@@ -18,6 +18,8 @@ namespace mantis_tests
         protected string baseURL;
         public RegistrationHelper Registration { get; set; }
         public FtpHelper Ftp { get; set; }
+        public JamesHelper James { get; set; }
+        public MailHepler Mail { get; set; }
 
         private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -28,6 +30,8 @@ namespace mantis_tests
             baseURL = "http://localhost";
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
+            James = new JamesHelper(this);
+            Mail = new MailHepler(this);
         }
         ~ApplicationManager()
         {
