@@ -26,5 +26,17 @@ namespace mantis_tests
             driver.Navigate().GoToUrl(baseURL);
             return this;
         }
+        public NavigationHelper GoToManageOverviewPage()
+        {
+            driver.FindElement(By.XPath("//a[@href='/mantisbt-2.25.4/manage_overview_page.php']")).Click();
+
+            return this;
+        }
+        public NavigationHelper GoToProjectControlPage()
+        {
+            driver.FindElement(By.XPath("//a[@href='/mantisbt-2.25.4/manage_proj_page.php']")).Click();
+
+            return this;
+        }
     }
 }

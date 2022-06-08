@@ -21,6 +21,9 @@ namespace mantis_tests
         public JamesHelper James { get; set; }
         public MailHepler Mail { get; set; }
         public NavigationHelper Navigation { get; set; }
+        public AuthHelper authHelper { get; set; }
+        public ProjectManagementHelper projectManagementHelper { get; set; }
+
 
         private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -34,6 +37,8 @@ namespace mantis_tests
             James = new JamesHelper(this);
             Mail = new MailHepler(this);
             Navigation = new NavigationHelper(this, baseURL);
+            authHelper = new AuthHelper(this);
+            projectManagementHelper = new ProjectManagementHelper(this);
         }
         ~ApplicationManager()
         {
@@ -61,7 +66,6 @@ namespace mantis_tests
         {
                 get { return driver; } 
         }
-        
     }
        
 }
