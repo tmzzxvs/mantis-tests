@@ -27,11 +27,12 @@ namespace mantis_tests
         [Test]
         public void TestAccountRegistration()
         {
+            string user = GenerateRandomString(10);
             AccountData account = new AccountData()
             {
-                Name = GenerateRandomString(10),
+                Name = user,
                 Password = "password",
-                Email = GenerateRandomString(10) + "@localhost.localdomain"
+                Email = $"{user}@localhost.localdomain"
             };
 
             app.James.DeleteAccount(account);
