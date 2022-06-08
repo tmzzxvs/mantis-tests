@@ -80,6 +80,7 @@
     <Compile Include="AppManager\HelperBase.cs" />
     <Compile Include="AppManager\JamesHelper.cs" />
     <Compile Include="AppManager\MailHepler.cs" />
+    <Compile Include="AppManager\NavigationHelper.cs" />
     <Compile Include="AppManager\RegistrationHelper.cs" />
     <Compile Include="AppManager\TelnetInterface.cs" />
     <Compile Include="Model\AccountData.cs" />

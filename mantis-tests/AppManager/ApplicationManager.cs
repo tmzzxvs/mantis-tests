@@ -20,6 +20,7 @@ namespace mantis_tests
         public FtpHelper Ftp { get; set; }
         public JamesHelper James { get; set; }
         public MailHepler Mail { get; set; }
+        public NavigationHelper Navigation { get; set; }
 
         private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -27,11 +28,12 @@ namespace mantis_tests
         {
      //     driver = new FirefoxDriver();
             driver = new ChromeDriver();
-            baseURL = "http://localhost";
+            baseURL = "http://localhost/mantisbt-2.25.4/login_page.php";
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
             James = new JamesHelper(this);
             Mail = new MailHepler(this);
+            Navigation = new NavigationHelper(this, baseURL);
         }
         ~ApplicationManager()
         {
@@ -49,7 +51,7 @@ namespace mantis_tests
             if (! app.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
-                newInstance.Driver.Url = "http://localhost/mantisbt-2.25.4/login_page.php";
+                newInstance.Navigation.GoToHomePage();
                 app.Value = newInstance;
 
             }
