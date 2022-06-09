@@ -11,10 +11,12 @@ namespace mantis_tests
     public class NavigationHelper : HelperBase
     {
         private readonly string baseURL;
+        private readonly string mantis_ver;
 
-        public NavigationHelper(ApplicationManager manager, string baseURL) : base(manager)
+        public NavigationHelper(ApplicationManager manager, string baseURL, string mantis_ver) : base(manager)
         {
             this.baseURL = baseURL;
+            this.mantis_ver = mantis_ver;
         }
 
         public NavigationHelper GoToHomePage()
@@ -28,13 +30,13 @@ namespace mantis_tests
         }
         public NavigationHelper GoToManageOverviewPage()
         {
-            driver.FindElement(By.XPath("//a[@href='/mantisbt-2.25.4/manage_overview_page.php']")).Click();
+            driver.FindElement(By.XPath($"//a[@href='/mantisbt-{mantis_ver}/manage_overview_page.php']")).Click();
 
             return this;
         }
         public NavigationHelper GoToProjectControlPage()
         {
-            driver.FindElement(By.XPath("//a[@href='/mantisbt-2.25.4/manage_proj_page.php']")).Click();
+            driver.FindElement(By.XPath($"//a[@href='/mantisbt-{mantis_ver}/manage_proj_page.php']")).Click();
 
             return this;
         }

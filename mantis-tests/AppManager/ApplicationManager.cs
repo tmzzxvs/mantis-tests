@@ -16,6 +16,8 @@ namespace mantis_tests
     {
         protected IWebDriver driver;
         protected string baseURL;
+        protected string mantis_ver;
+
         public RegistrationHelper Registration { get; set; }
         public FtpHelper Ftp { get; set; }
         public JamesHelper James { get; set; }
@@ -32,11 +34,12 @@ namespace mantis_tests
      //     driver = new FirefoxDriver();
             driver = new ChromeDriver();
             baseURL = "http://localhost/mantisbt-2.25.4/login_page.php";
+            mantis_ver = "2.25.4";
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
             James = new JamesHelper(this);
             Mail = new MailHepler(this);
-            Navigation = new NavigationHelper(this, baseURL);
+            Navigation = new NavigationHelper(this, baseURL, mantis_ver);
             authHelper = new AuthHelper(this);
             projectManagementHelper = new ProjectManagementHelper(this);
         }
