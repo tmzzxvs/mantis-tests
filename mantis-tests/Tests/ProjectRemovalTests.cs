@@ -5,25 +5,30 @@ using System.Collections.Generic;
 namespace mantis_tests
 {
     [TestFixture]
-    public class ProjectRemovalTests : ProjectManagementTestBase
+    public class ProjectRemovalTests : AuthTestBase
     {
         [Test]
         public void RemoveProjectTest()
         {
-            if (app.projectManagementHelper.GetProjectList().Count == 0)
+            AccountData account = new AccountData()
+            {
+                Name = "administrator",
+                Password = "secret"
+            };
+            if (app.api.GetProjectsList(account).Count == 0)
             {
                 ProjectData project = new ProjectData()
                 {
                     Name = GenerateRandomString(15),
                     Description = GenerateRandomString(100),
                 };
-                app.projectManagementHelper.Create(project);
+                app.api.Create(account, project);
             }
-            List<ProjectData> oldList = app.projectManagementHelper.GetProjectList();
+            List<ProjectData> oldList = app.api.GetProjectsList(account);
 
             app.projectManagementHelper.Remove(0);
 
-            List<ProjectData> newList = app.projectManagementHelper.GetProjectList();
+            List<ProjectData> newList = app.api.GetProjectsList(account);
             ProjectData toBeRemoved = oldList[0];
             oldList.RemoveAt(0);
             oldList.Sort();

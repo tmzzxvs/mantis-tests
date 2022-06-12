@@ -10,17 +10,22 @@ namespace mantis_tests
         [Test]
         public void ProjectCreationTest()
         {
+            AccountData account = new AccountData()
+            {
+                Name = "administrator",
+                Password = "secret"
+            };
             ProjectData project = new ProjectData()
             {
-                Name = GenerateRandomString(15),
+                Name = "project1",
                 Description = GenerateRandomString(100)
             };
 
-            List<ProjectData> oldList = app.projectManagementHelper.GetProjectList();
+            List<ProjectData> oldList = app.api.GetProjectsList(account);
 
             app.projectManagementHelper.Create(project);
 
-            List<ProjectData> newList = app.projectManagementHelper.GetProjectList();
+            List<ProjectData> newList = app.api.GetProjectsList(account);
 
             oldList.Add(project);
             oldList.Sort();
